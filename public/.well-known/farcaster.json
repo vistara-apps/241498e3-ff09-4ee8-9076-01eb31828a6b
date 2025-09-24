@@ -1,0 +1,30 @@
+{
+  "accountAssociation": {
+    "header": "",
+    "payload": "",
+    "signature": ""
+  },
+  "frame": {
+    "version": "1",
+    "name": "PlantPal AI",
+    "subtitle": "Built with Zara",
+    "description": "PlantPal AI is a Base Mini App built with Zara.",
+    "iconUrl": "https://0co.to/images/zara-2.png",
+    "homeUrl": "https://241498e3ff094ee8907601eb31828a6b-leb4.vercel.app",
+    "splashImageUrl": "https://241498e3ff094ee8907601eb31828a6b-leb4.vercel.app/splash.png",
+    "splashBackgroundColor": "#000000",
+    "heroImageUrl": "https://241498e3ff094ee8907601eb31828a6b-leb4.vercel.app/image.png",
+    "tagline": "PlantPal AI",
+    "screenshotUrls": [
+      "https://241498e3ff094ee8907601eb31828a6b-leb4.vercel.app/screenshot.png",
+      "https://241498e3ff094ee8907601eb31828a6b-leb4.vercel.app/screenshot.png"
+    ],
+    "primaryCategory": "social",
+    "tags": [
+      "base",
+      "miniapp",
+      "onchainkit"
+    ],
+    "webhookUrl": "https://241498e3ff094ee8907601eb31828a6b-leb4.vercel.app/api/webhook"
+  }
+}
