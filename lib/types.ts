@@ -50,3 +50,25 @@ export interface SMSMessage {
   sentAt: Date;
   type: 'care_reminder' | 'mood_update' | 'greeting' | 'response';
 }
+
+export interface PaymentRequest {
+  amount: string;
+  currency: 'USDC';
+  recipient: string;
+  description?: string;
+}
+
+export interface PaymentResponse {
+  transactionHash: string;
+  status: 'pending' | 'confirmed' | 'failed';
+  timestamp: Date;
+}
+
+export interface SubscriptionPlan {
+  id: string;
+  name: string;
+  price: string;
+  currency: 'USDC';
+  duration: 'monthly' | 'yearly';
+  features: string[];
+}

@@ -57,3 +57,13 @@ export const SOLANA_THEMED_MESSAGES = {
     "Running low on solar power over here! Time to relocate this validator 📍",
   ],
 };
+
+// USDC Contract Address on Base Network
+export const USDC_ADDRESS_BASE = '0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913';
+
+// Payment configuration
+export const PAYMENT_CONFIG = {
+  SUBSCRIPTION_PRICE: '5.99', // USDC
+  RECIPIENT_ADDRESS: '0x742d35Cc6634C0532925a3b8D5c9A98f6B38d4f5', // Example recipient address
+  TRIAL_DURATION_DAYS: 7,
+};
