@@ -5,7 +5,8 @@ import { AppShell } from './components/AppShell';
 import { PlantCard } from './components/PlantCard';
 import { CTABox } from './components/CTABox';
 import { AgentChat } from './components/AgentChat';
-import { Plant } from '@/lib/types';
+import { PaymentFlow } from './components/PaymentFlow';
+import { Plant, PaymentResponse } from '@/lib/types';
 import { generatePlantMessage } from '@/lib/utils';
 import { Leaf, QrCode, Smartphone, Plus, Sparkles } from 'lucide-react';
 import { ConnectWallet, Wallet } from '@coinbase/onchainkit/wallet';
@@ -15,6 +16,7 @@ export default function HomePage() {
   const [plants, setPlants] = useState<Plant[]>([]);
   const [selectedPlant, setSelectedPlant] = useState<Plant | null>(null);
   const [showAddPlant, setShowAddPlant] = useState(false);
+  const [hasSubscription, setHasSubscription] = useState(false);
 
   // Initialize with demo plants
   useEffect(() => {
@@ -69,6 +71,17 @@ export default function HomePage() {
 
   const handleAddPlant = () => {
     setShowAddPlant(true);
+  };
+
+  const handlePaymentSuccess = (response: PaymentResponse) => {
+    console.log('Payment successful:', response);
+    setHasSubscription(true);
+    // Here you could trigger a subscription activation
+  };
+
+  const handlePaymentError = (error: Error) => {
+    console.error('Payment failed:', error);
+    // Handle payment error (show notification, etc.)
   };
 
   return (
@@ -191,17 +204,33 @@ export default function HomePage() {
       <div className="mt-16 text-center">
         <div className="glass-card p-8 border-primary/30">
           <h3 className="text-2xl font-bold text-text-primary mb-4">
-            Ready to Start?
+            {hasSubscription ? "You're All Set!" : "Ready to Start?"}
           </h3>
           <p className="text-text-secondary mb-6 max-w-md mx-auto">
-            $5.99/month for up to 10 plants with unlimited SMS messages and AI personalities
+            {hasSubscription 
+              ? "Your subscription is active. Enjoy personalized SMS messages from your plants!"
+              : "$5.99/month for up to 10 plants with unlimited SMS messages and AI personalities"
+            }
           </p>
-          <button className="btn-primary text-lg px-8 py-4">
-            Start Free Trial
-          </button>
-          <p className="text-text-secondary text-sm mt-3">
-            7-day free trial • Cancel anytime
-          </p>
+          
+          {!hasSubscription && (
+            <div className="max-w-md mx-auto">
+              <PaymentFlow
+                onPaymentSuccess={handlePaymentSuccess}
+                onPaymentError={handlePaymentError}
+                buttonText="Subscribe with USDC ($5.99/month)"
+              />
+              <p className="text-text-secondary text-sm mt-3">
+                7-day free trial • Cancel anytime • Pay with USDC on Base
+              </p>
+            </div>
+          )}
+          
+          {hasSubscription && (
+            <div className="text-green-400 text-lg font-medium">
+              ✓ Subscription Active
+            </div>
+          )}
         </div>
       </div>
     </AppShell>
